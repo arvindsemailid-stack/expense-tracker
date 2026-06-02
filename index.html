@@ -139,7 +139,6 @@ const app = initializeApp(firebaseConfig);
 const db  = getFirestore(app);
 
 // ── ANTHROPIC CONFIG ────────────────────────────────────────────
-const ANTHROPIC_KEY = "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"; // ← paste your sk-ant-... key
 
 // ── CATEGORIES ──────────────────────────────────────────────────
 const CATEGORIES = {
@@ -236,13 +235,10 @@ async function removeExpense(firestoreId) {
 // ── AI PARSING ───────────────────────────────────────────────────
 async function callClaude(text) {
   const today = new Date().toISOString().split("T")[0];
-  const res = await fetch("https://api.anthropic.com/v1/messages", {
+  const res = await fetch("https://flat-bird-1114.arvindsemailid.workers.dev/", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      "x-api-key": ANTHROPIC_KEY,
-      "anthropic-version": "2023-06-01",
-      "anthropic-dangerous-direct-browser-calls": "true"
     },
     body: JSON.stringify({
       model: "claude-haiku-4-5-20251001",
